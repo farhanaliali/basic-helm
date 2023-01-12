@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.image.name }}
+  labels:
+    {{- include "ims.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ims.labels" . | nindent 8 }}
+  template:
+    metadata:
+      labels:
+       {{- include "ims.labels" . | nindent 12 }} 
+    spec:
+      containers:
+      - name: {{ .Values.image.name }}
+        image: {{ .Values.image.repository}}
+        ports:
+        - containerPort: {{ .Values.image.port}}
+        

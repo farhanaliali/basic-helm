@@ -1,0 +1,13 @@
+replicaCount: 1
+image: 
+    name: nginx
+    repository: nginx
+    port: 80
+  
+service: 
+    name: nginx-svc
+    type: ClusterIP
+    port: 80
+    targetport: 80
+  
+
